@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Weather Dashboard</title>
+    <link rel="stylesheet" href="weather.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+</head>
+<body>
+    <div class="moving-background-layer"></div>
+
+    <div class="dashboard-container">
+        
+        <main class="main-content">
+            <header class="header-bar">
+                <div class="search-area">
+                    <select id="city-dropdown" class="translucent-panel hover-effect">
+                        <option value="" disabled selected>Search Weather by City</option>
+                        </select>
+                </div>
+                
+                <div class="device-info">
+                    <h2 id="location-name">Station_1 (Loading...)</h2>
+                    <p id="datetime-display">Loading date and time...</p>
+                </div>
+            </header>
+
+            <section class="top-row-flex">
+                <div id="dashboard" class="panel temp-panel translucent-panel hover-effect">
+                    <div id="current-temp" class="temp-main">--°C</div>
+                    <div id="current-description" class="rain-data">
+                        Pressure: <span id="temp-pressure">-- hPa</span> | 
+                        Feels Like: <span id="temp-feels-like">--°C</span>
+                    </div>
+                    <div id="weather-icon-main"><i class="fas fa-sync fa-spin"></i></div>
+                </div>
+
+                <div class="panel conditions-panel translucent-panel hover-effect">
+                    <h3>SECONDARY DATA</h3>
+                    <div class="condition-items">
+                        <p>Humidity: <span id="humidity">--%</span></p>
+                        <p>Dew Point: <span id="dew-point">--°C</span></p>
+                        <p>UV Index: <span id="uv-index">--</span></p>
+                        <p>Visibility: <span id="visibility">-- km</span></p>
+                    </div>
+                    <div class="pressure-group">
+                        <span class="pressure-item"><i class="fas fa-water"></i> QNH: <span id="pressure-qnh">-- hPa</span></span>
+                        <span class="pressure-item"><i class="fas fa-cloud"></i> QFE: <span id="pressure-qfe">-- hPa</span></span>
+                        <span class="pressure-item"><i class="fas fa-tachometer-alt"></i> Sensor: <span id="pressure-sensor">-- hPa</span></span>
+                    </div>
+                </div>
+
+                <div class="panel device-panel air-quality-panel translucent-panel hover-effect">
+                    <h3>💨 AIR QUALITY INDEX (AQI)</h3>
+                    <div id="aqi-level" class="aqi-big-number">--</div>
+                    <div id="aqi-status" class="aqi-status good">Loading...</div>
+                    <p class="aqi-note">Main Pollutant: <span id="main-pollutant">--</span></p>
+                    
+                    <div class="pollutant-detail">
+                        <p>PM2.5: -- µg/m³</p>
+                        <p>PM10: -- µg/m³</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-chart panel translucent-panel hover-effect">
+                <h3>TEMPERATURE & PRESSURE TRENDS <span class="today-tag">Today (24 Hour Forecast)</span></h3>
+                <div class="graph-container">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </section>
+
+            <section class="bottom-grid">
+                <div class="panel wind-panel translucent-panel hover-effect">
+                    <h4>2 MINUTE WIND</h4>
+                    <i class="fas fa-wind icon-large"></i>
+                    <p>Speed: <span id="wind-speed-2min">-- kt</span></p>
+                    <p>Direction: <span id="wind-dir-2min">--°W</span></p>
+                </div>
+
+                <div class="panel wind-panel translucent-panel hover-effect">
+                    <h4>10 MINUTE WIND</h4>
+                    <i class="fas fa-wind icon-large"></i>
+                    <p>Speed: <span id="wind-speed-10min">-- kt</span></p>
+                    <p>Max Wind: <span id="wind-max">-- kt</span></p>
+                    <p>Direction: <span id="wind-dir-10min">--°W</span></p>
+                </div>
+
+                <div class="panel forecast-panel translucent-panel hover-effect">
+                    <h4>5-DAY FORECAST / RAINFALL</h4>
+                    <div id="forecast-container" class="forecast-list">
+                        </div>
+                </div>
+            </section>
+
+            <footer class="error-message" id="error-message" style="display: none;">
+                <p>⚠️ API Error: Could not fetch weather data. Please try again later.</p>
+            </footer>
+
+        </main>
+    </div>
+    <script src="weather.js"></script>
+</body>
+</html>
