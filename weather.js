@@ -1,5 +1,5 @@
 // IMPORTANT: Replace 'YOUR_API_KEY' with your actual key!
-const API_KEY = 'YOUR_API_KEY'; 
+const API_KEY = 'bca5d1464c32398e38d258b1bcfcf017'; 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 
 // Global variable to hold the chart instance
@@ -373,5 +373,6 @@ function init() {
     setupCityDropdown();
     getCurrentLocationWeather(); 
 }
+
 
 init();
